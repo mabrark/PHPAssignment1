@@ -1,8 +1,12 @@
 <?php
     session_start();
     require("database.php");
+    $queryBooks = 'SELECT * FROM books';
+    $statement1 = $db->prepare($queryBooks);
+    $statement1->excecute();
+    $books = $statement1->fetchAll();
 
-    
+    $statement1->closeCursor();
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +28,15 @@
               <th> Publisher</th>
               <th>Year</th>
               </tr>
+
+              <?php foreach ($books as $book): ?>
+                <tr>
+                  <td><?php echo $book['bookName']; ?></td>
+                  <td><?php echo $book['authorName']; ?></td>
+                  <td><?php echo $book['publisher']; ?></td>
+                  <td><?php echo $book['year']; ?></td>
+                </tr>
+              <?php endforeach; ?>  
           </table>
         </main> 
 
