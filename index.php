@@ -38,6 +38,7 @@
                 </tr>
               <?php endforeach; ?>  
           </table>
+          <p><a href="add_book_form.php">add Book</a></p>
         </main> 
 
         <?php include("footer.php"); ?>   
