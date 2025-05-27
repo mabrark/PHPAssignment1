@@ -29,7 +29,7 @@
 
              <div id="data">
                  <input type="hidden" name="book_id"
-                       value="<?php $book['bookID']; ?>" />
+                       value="<?php echo $book['bookID']; ?>" />
 
               <label>Book Name:</label>
               <input type="text" name="book_name"
