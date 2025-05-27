@@ -26,7 +26,10 @@
               <th>Book Name</th>
               <th>Author Name</th>
               <th> Publisher</th>
+              <th> status</th>
               <th>Year</th>
+              <th>&nbsp;</th>
+              <th>&nbsp;</th>
               </tr>
 
               <?php foreach ($books as $book): ?>
@@ -34,7 +37,23 @@
                   <td><?php echo $book['bookName']; ?></td>
                   <td><?php echo $book['authorName']; ?></td>
                   <td><?php echo $book['publisher']; ?></td>
+                  <td><?php echo $book['status']; ?></td>
                   <td><?php echo $book['year']; ?></td>
+                  <td>
+                    <form action="update_book_form.php" method="post">
+                      <input type="hidden"name="book_id"
+                          value="<?php echo $book['bookID']; ?>" />
+                      <input type="submit" value="update" />    
+                    </form>
+                  </td> <!-- this is for edit button -->
+                  <td>
+                    <form action="delete_book_form.php" method="post">
+                      <input type="hidden"name="book_id"
+                          value="<?php echo $book['bookID']; ?>" />
+                      <input type="submit" value="delete" />    
+                    </form>
+                  </td> <!-- this is for delete button -->
+                  
                 </tr>
               <?php endforeach; ?>  
           </table>
