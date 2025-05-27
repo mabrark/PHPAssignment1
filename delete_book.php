@@ -4,9 +4,9 @@
 
    if ($book_id != false)
    {
-    $query = 'DELETE FROM books WHERE bookID = :book_id';
+     $query = 'DELETE FROM books WHERE bookID = :book_id';
 
-    $statement = $db->prepare($query);
+      $statement = $db->prepare($query);
        $statement->bindValue(':book_id', $book_id);
        
        $statement->excecuted();
