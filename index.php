@@ -28,6 +28,7 @@
               <th> Publisher</th>
               <th> status</th>
               <th>Year</th>
+              <th>Photo</th>
               <th>&nbsp;</th>
               <th>&nbsp;</th>
               </tr>
@@ -39,20 +40,21 @@
                   <td><?php echo $book['publisher']; ?></td>
                   <td><?php echo $book['status']; ?></td>
                   <td><?php echo $book['year']; ?></td>
+                  <td><img src="<?php echo htmlspecialchars('./images/' . $contact['imageName']); ?>" alt="<?php echo htmlspecialchars('./images/' . $contact['imageName']); ?>" style="width:auto; height: 100px;" /></td>
                   <td>
                     <form action="update_book_form.php" method="post">
                       <input type="hidden"name="book_id"
                           value="<?php echo $book['bookID']; ?>" />
                       <input type="submit" value="update" />    
                     </form>
-                  </td> <!-- this is for edit button -->
+                  </td>
                   <td>
                     <form action="delete_book_form.php" method="post">
                       <input type="hidden"name="book_id"
                           value="<?php echo $book['bookID']; ?>" />
                       <input type="submit" value="delete" />    
                     </form>
-                  </td> <!-- this is for delete button -->
+                  </td>
                   
                 </tr>
               <?php endforeach; ?>  

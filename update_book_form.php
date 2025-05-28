@@ -57,7 +57,7 @@
 
              <div id="button">
 
-             <label>&nbsp</label>
+             <label>&nbsp;</label>
               <input type="submit" value="Update Book" /><br />
 
              </div>

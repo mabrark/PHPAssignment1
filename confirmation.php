@@ -1,12 +1,5 @@
 <?php
     session_start();
-    require("database.php");
-    $queryBooks = 'SELECT * FROM books';
-    $statement1 = $db->prepare($queryBooks);
-    $statement1->excecute();
-    $books = $statement1->fetchAll();
-
-    $statement1->closeCursor();
 ?>
 
 <!DOCTYPE html>

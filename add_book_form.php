@@ -32,11 +32,14 @@
               <label>Year:</label>
               <input type="date" name="year" /><br />
 
+              <label>Upload Image:</label>
+              <input type="file" name="file1" /><br />
+
              </div>
 
              <div id="button">
 
-             <label>&nbsp</label>
+             <label>&nbsp;</label>
               <input type="submit" value="Save Book" /><br />
 
              </div>
