@@ -6,7 +6,7 @@
 <html>
      <head>
        <title>Library Stock - Update Confirmation</title>
-       <link rel="stylesheet" type="text/css" herf="css/main.css" />
+       <link rel="stylesheet" type="text/css" href="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
