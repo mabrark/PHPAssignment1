@@ -7,7 +7,7 @@
       $statement = $db->prepare($query);
       $statement->bindValue(':book_id', $book_id);
        
-      $statement->excecuted();
+      $statement->excecute();
       $book = $statement->fetch();
       $statement->loseCurser();
    
@@ -16,7 +16,7 @@
 <html>
      <head>
        <title>Library Stock - Update Book</title>
-       <link rel="stylesheet" type="txt/css" herf="css/main.css" />
+       <link rel="stylesheet" type="text/css" herf="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
@@ -24,7 +24,7 @@
         <main>
           <h2>Update Book</h2>
 
-          <form action="update_bo0k.php" method="post" id="update_book_form"
+          <form action="update_book.php" method="post" id="update_book_form"
              enctype="multipart/form-data">
 
              <div id="data">

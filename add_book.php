@@ -24,7 +24,7 @@
 
    $book_name = filter_input(INPUT_POST, 'book_name');
    $author_name = filter_input(INPUT_POST, 'author_name');
-   $publisher = filter_input(INPUT_POST, 'publisher');
+   $publisher_name = filter_input(INPUT_POST, 'publisher_name');
    $staus = filter_input(INPUT_POST, 'status'); // assigns the value of the selected radio button
    $year = filter_input(INPUT_POST, 'year');
    $image_name = $_FILES['file1']['name'];
@@ -39,11 +39,11 @@
 
     foreach ($books as $book)
     { 
-      if ($book == $book["bookName"])
+      if ($book_name == $book["bookName"])
       {
         $_SESSION["add_error"] = "invalid datas, duplicate book name. Try again."
 
-        $url = "confirmation.php";
+        $url = "error.php";
         header("Location: " . $url);
         die();
       }
@@ -54,7 +54,7 @@
         {
           $_SESSION["add_error"] = "invalid datas, duplicate book name. Try again."
 
-          $url = "confirmation.php";
+          $url = "error.php";
           header("Location: " . $url);
           die();
         }
@@ -65,11 +65,10 @@
        $query = 'INSERT INTO BOOKS
        (bookName, authorName, publisher, status, year, imageName)
        VALUES
-       (:bookName, :authorName, :publisher, :status, :year, imageName)';
+       (:bookName, :authorName, :publisher, :status, :year, :imageName)';
 
        $statement = $db->prepare($query);
        $statement->bindValue(':bookName', $book_name);
-       $statement->bindValue(':authorName', $author_name);
        $statement->bindValue(':authorName', $author_name);
        $statement->bindValue(':publisher', $publisher);
        $statement->bindValue(':status', $status);   

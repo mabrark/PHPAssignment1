@@ -6,7 +6,7 @@
 <html>
      <head>
        <title>Library stock - Database error</title>
-       <link rel="stylesheet" type="txt/css" herf="css/main.css" />
+       <link rel="stylesheet" type="text/css" herf="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>

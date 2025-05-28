@@ -6,7 +6,7 @@
 <html>
      <head>
        <title>Library Stock - Error</title>
-       <link rel="stylesheet" type="txt/css" herf="css/main.css" />
+       <link rel="stylesheet" type="text/css" herf="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
@@ -17,7 +17,7 @@
           <p>
             <?php echo $_SESSION["add_error"]; ?> 
           </p>
-          <p><a href="add_book_form.php">View Book List</a></p>
+          <p><a href="add_book_form.php">Add Book</a></p>
           <p><a href="index.php">View Book List</a></p>
         </main> 
 

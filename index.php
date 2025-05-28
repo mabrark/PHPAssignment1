@@ -13,7 +13,7 @@
 <html>
      <head>
        <title>Library Stock - Home</title>
-       <link rel="stylesheet" type="txt/css" herf="css/main.css" />
+       <link rel="stylesheet" type="text/css" herf="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
@@ -40,7 +40,7 @@
                   <td><?php echo $book['publisher']; ?></td>
                   <td><?php echo $book['status']; ?></td>
                   <td><?php echo $book['year']; ?></td>
-                  <td><img src="<?php echo htmlspecialchars('./images/' . $contact['imageName']); ?>" alt="<?php echo htmlspecialchars('./images/' . $contact['imageName']); ?>" style="width:auto; height: 100px;" /></td>
+                  <td><img src="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" alt="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" style="width:auto; height: 100px;" /></td>
                   <td>
                     <form action="update_book_form.php" method="post">
                       <input type="hidden"name="book_id"

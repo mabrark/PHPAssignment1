@@ -21,7 +21,7 @@
     { 
       if ($book == $book["bookName"] && $book_id != $book["bookID"])
       {
-        $_SESSION["add_error"] = "invalid datas, duplicate book name. Try again."
+        $_SESSION["add_error"] = "invalid data, duplicate book name. Try again."
 
         $url = "confirmation.php";
         header("Location: " . $url);
@@ -32,9 +32,9 @@
     if ($book_name == null || $author_name == null ||
         $publisher == null || $year == null)
         {
-          $_SESSION["add_error"] = "invalid datas, duplicate book name. Try again."
+          $_SESSION["add_error"] = "invalid data, duplicate book name. Try again."
 
-          $url = "confirmation.php";
+          $url = "error.php";
           header("Location: " . $url);
           die();
         }
@@ -42,7 +42,7 @@
           {
             require_once('database.php');
 
-       $query = 'UPDATE BOOKS
+       $query = 'UPDATE books
            SET = bookName = :bookName,
            authorName = :authorName,
            publisher = :publisher,
@@ -51,6 +51,7 @@
            WHERE bookID = :bookID';
 
        $statement = $db->prepare($query);
+       $statement->bindValue(':bookID', $book_id);
        $statement->bindValue(':bookName', $book_name);
        $statement->bindValue(':authorName', $author_name);
        $statement->bindValue(':publisher', $publisher);
@@ -60,8 +61,7 @@
        $statement->excecuted();
        $statement->loseCurser();
 
-          }
-
+      }
    $_SESSION["fullName"] = $book_name . " " . $author_name;
 
    $url = "confirmation.php";
