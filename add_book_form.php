@@ -3,7 +3,7 @@
 <html>
      <head>
        <title>Library Stock - add Book</title>
-       <link rel="stylesheet" type="txt/css" href="css/main.css" />
+       <link rel="stylesheet" type="text/css" href="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
