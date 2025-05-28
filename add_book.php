@@ -1,6 +1,6 @@
 
 <?php
-   seesion_start();
+   session_start();
 
    require_once 'image_util.php'; 
 
@@ -24,15 +24,15 @@
 
    $book_name = filter_input(INPUT_POST, 'book_name');
    $author_name = filter_input(INPUT_POST, 'author_name');
-   $publisher_name = filter_input(INPUT_POST, 'publisher_name');
-   $staus = filter_input(INPUT_POST, 'status'); // assigns the value of the selected radio button
+   $publisher = filter_input(INPUT_POST, 'publisher');
+   $status = filter_input(INPUT_POST, 'status'); // assigns the value of the selected radio button
    $year = filter_input(INPUT_POST, 'year');
    $image_name = $_FILES['file1']['name'];
 
     require_once('database.php');
     $queryBooks = 'SELECT * FROM books';
     $statement1 = $db->prepare($queryBooks);
-    $statement1->excecute();
+    $statement1->execute();
     $books = $statement1->fetchAll();
 
     $statement1->closeCursor();
@@ -41,7 +41,7 @@
     { 
       if ($book_name == $book["bookName"])
       {
-        $_SESSION["add_error"] = "invalid datas, duplicate book name. Try again."
+        $_SESSION["add_error"] = "invalid data, duplicate book name. Try again."
 
         $url = "error.php";
         header("Location: " . $url);
@@ -60,7 +60,6 @@
         }
         else
         {
-            require_once('database.php');
 
        $query = 'INSERT INTO BOOKS
        (bookName, authorName, publisher, status, year, imageName)
@@ -75,16 +74,15 @@
        $statement->bindValue(':year', $year);
        $statement->bindValue(':imageName', $image_name);
    
-       $statement->excecuted();
+       $statement->executed();
        $statement->loseCurser();
 
-          }
+ }
 
    $_SESSION["fullName"] = $book_name . " " . $author_name;
 
    $url = "confirmation.php";
    header("Location: " . $url);
    die(); 
-
-
+   
 ?>

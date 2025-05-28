@@ -3,7 +3,7 @@
     require("database.php");
     $queryBooks = 'SELECT * FROM books';
     $statement1 = $db->prepare($queryBooks);
-    $statement1->excecute();
+    $statement1->execute();
     $books = $statement1->fetchAll();
 
     $statement1->closeCursor();
@@ -13,7 +13,7 @@
 <html>
      <head>
        <title>Library Stock - Home</title>
-       <link rel="stylesheet" type="text/css" herf="css/main.css" />
+       <link rel="stylesheet" type="text/css" href="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
@@ -49,7 +49,7 @@
                     </form>
                   </td>
                   <td>
-                    <form action="delete_book_form.php" method="post">
+                    <form action="delete_book_form.php" method="post" onsubmit="return confirm('Are you sure you want to delete this book?');">
                       <input type="hidden"name="book_id"
                           value="<?php echo $book['bookID']; ?>" />
                       <input type="submit" value="delete" />    

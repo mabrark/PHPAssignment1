@@ -3,7 +3,7 @@
 <html>
      <head>
        <title>Library Stock - add Book</title>
-       <link rel="stylesheet" type="txt/css" herf="css/main.css" />
+       <link rel="stylesheet" type="txt/css" href="css/main.css" />
      </head>
      <body>
         <?php include("header.php"); ?>
@@ -26,8 +26,8 @@
               <input type="text" name="publisher" /><br />
 
               <label>Status:</label>
-              <input type="radio" name="status" value="memeber" />Member<br />
-              <input type="radio" name="status" value="nonmemeber" />Non_Member<br />
+              <input type="radio" name="status" value="memeber" /> Member<br />
+              <input type="radio" name="status" value="nonmemeber" /> Non_Member<br />
 
               <label>Year:</label>
               <input type="date" name="year" /><br />
