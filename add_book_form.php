@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
      <head>
-       <title>Library Stock - add Book</title>
+       <title>Library Stock - Add Book</title>
        <link rel="stylesheet" type="text/css" href="css/main.css" />
      </head>
      <body>
@@ -11,7 +11,7 @@
         <main>
           <h2>Add Book</h2>
 
-          <form action="add_bo0k.php" method="post" id="add_book_form"
+          <form action="add_book.php" method="post" id="add_book_form"
              enctype="multipart/form-data">
 
              <div id="data">

@@ -52,7 +52,7 @@
     if ($book_name == null || $author_name == null ||
         $publisher == null || $year == null)
         {
-          $_SESSION["add_error"] = "invalid datas, duplicate book name. Try again."
+          $_SESSION["add_error"] = "invalid book data, check all fields and Try again."
 
           $url = "error.php";
           header("Location: " . $url);
@@ -60,6 +60,7 @@
         }
         else
         {
+          require_once('database.php');
 
        $query = 'INSERT INTO BOOKS
        (bookName, authorName, publisher, status, year, imageName)
@@ -84,5 +85,5 @@
    $url = "confirmation.php";
    header("Location: " . $url);
    die(); 
-   
+
 ?>
