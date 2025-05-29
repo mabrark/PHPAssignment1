@@ -48,13 +48,8 @@
                       <input type="submit" value="update" />    
                     </form>
                   </td>
-                  <td>
-                    <form action="delete_book_form.php" method="post" onsubmit="return confirm('Are you sure you want to delete this book?');">
-                      <input type="hidden"name="book_id"
-                          value="<?php echo $book['bookID']; ?>" />
-                      <input type="submit" value="delete" />    
-                    </form>
-                  </td>
+              
+                 </td>
                   
                 </tr>
               <?php endforeach; ?>  
