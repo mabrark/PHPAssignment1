@@ -48,6 +48,11 @@
                       <input type="submit" value="update" />    
                     </form>
                   </td>
+                  <form action="delete_book_form.php" method="post">
+                      <input type="hidden"name="book_id"
+                          value="<?php echo $book['bookID']; ?>" />
+                      <input type="submit" value="update" />    
+                    </form>
               
                  </td>
                   

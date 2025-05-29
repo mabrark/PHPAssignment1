@@ -63,9 +63,9 @@
           require_once('database.php');
 
        $query = 'INSERT INTO BOOKS
-       (bookName, authorName, publisher, status, year, imageName)
-       VALUES
-       (:bookName, :authorName, :publisher, :status, :year, :imageName)';
+          (bookName, authorName, publisher, status, year, imageName)
+          VALUES
+          (:bookName, :authorName, :publisher, :status, :year, :imageName)';
 
        $statement = $db->prepare($query);
        $statement->bindValue(':bookName', $book_name);
