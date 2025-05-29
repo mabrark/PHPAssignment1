@@ -12,7 +12,7 @@
     require_once('database.php');
     $queryBooks = 'SELECT * FROM books';
     $statement1 = $db->prepare($queryBooks);
-    $statement1->excecute();
+    $statement1->execute();
     $books = $statement1->fetchAll();
 
     $statement1->closeCursor();
@@ -23,7 +23,7 @@
       {
         $_SESSION["add_error"] = "invalid data, duplicate book name. Try again."
 
-        $url = "confirmation.php";
+        $url = "error.php";
         header("Location: " . $url);
         die();
       }
@@ -58,13 +58,13 @@
        $statement->bindValue(':status', $status);   
        $statement->bindValue(':year', $year);
    
-       $statement->excecuted();
+       $statement->executed();
        $statement->loseCurser();
 
       }
    $_SESSION["fullName"] = $book_name . " " . $author_name;
 
-   $url = "confirmation.php";
+   $url = "update_confirmation.php";
    header("Location: " . $url);
    die(); 
 
