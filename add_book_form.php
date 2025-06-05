@@ -1,7 +1,7 @@
 <?php
     require_once('database.php');
-    $queryTypes = 'SELECT = FROM types';
-    $statement= db->prepare($queryType);
+    $queryTypes = 'SELECT * FROM types';
+    $statement= $db->prepare($queryTypes);
     $statement->execute();
     $types = $statement->fetchAll();
     $statement->closeCursor();
@@ -35,13 +35,13 @@
 
               <label>Status:</label>
               <input type="radio" name="status" value="member" />Member<br />
-              <input type="radio" name="status" value="nonmember" />Non_Member<br />
+              <input type="radio" name="status" value="nonmember" />Non-Member<br />
 
               <label>Year:</label>
               <input type="date" name="year" /><br />
               <label>Book Type:</label>
               <select name="type_id">
-                <?php foreach ($types as Stype): ?>
+                <?php foreach ($types as $type): ?>
                   <option value="<?php echo $type['typeID']; ?>">
                     <?php echo $type['bookType']; ?>
                   </option>
