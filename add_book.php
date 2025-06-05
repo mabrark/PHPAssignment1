@@ -1,7 +1,6 @@
 
 <?php
    session_start();
-   echo "Test0";
  
    require_once 'image_util.php';
  
@@ -14,12 +13,10 @@
  
         if (!empty($filename))
         {
-            echo "Test1";
             $source = $_FILES['file1']['tmp_name'];
             $target = $image_dir_path . DIRECTORY_SEPARATOR . $filename;
  
             move_uploaded_file($source, $target);
-            echo "Test2";
  
             process_image($image_dir_path, $filename);
         }
