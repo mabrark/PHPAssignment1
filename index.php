@@ -3,7 +3,7 @@
 
     if (isset($_SESSION["isLoggedIn"])) {
       header("Location: login_form.php");
-      dur();
+      die();
     }
 
     require("database.php");
@@ -51,21 +51,20 @@
                   <td><?php echo htmlspecialchars($book['year']); ?></td>
                   <td><?php echo htmlspecialchars($book['bookType']); ?></td>
                   <td>
-                    <img src="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" 
-                         alt="<?php echo htmlspecialchars($book['bookName'] . '' . $book['authorName']); ?>" />
+                    <img src="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" alt="<?php echo htmlspecialchars($book['bookName'] . '' . $book['authorName']); ?>" />
                   </td>
                   <td>
                     <form action="update_book_form.php" method="post">
-                      <input type="hidden"name="book_id"
+                      <input type="hidden" name="book_id"
                           value="<?php echo $book['bookID']; ?>" />
-                      <input type="submit" value="update" />    
+                      <input type="submit" value="Update" />    
                     </form>
                   </td>
                   <td>
                   <form action="delete_book.php" method="post">
                       <input type="hidden"name="book_id"
                           value="<?php echo $book['bookID']; ?>" />
-                      <input type="submit" value="update" />    
+                      <input type="submit" value="Delete" />    
                     </form>
               
                  </td>
@@ -73,7 +72,7 @@
                 </tr>
               <?php endforeach; ?>  
           </table>
-          <p><a href="add_book_form.php">add Book</a></p>
+          <p><a href="add_book_form.php">Add Book</a></p>
           <p><a href="logout.php">Logout</a></p>
         </main> 
 
