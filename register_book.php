@@ -18,7 +18,7 @@
     {
         if ($user_name == $registration["userName"])
         {
-            $_SESSION["add_error"] = "Invalid data, Duplicate Username. Try again.";
+            $_SESSION["add_error"] = "Invalid data, duplicate Username. Try again.";
 
             $url = "error.php";
             header("Location: " . $url);

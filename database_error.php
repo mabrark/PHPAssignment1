@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
      <head>
-       <title>Library stock - Database error</title>
+       <title>Library stock - Database Error</title>
        <link rel="stylesheet" type="text/css" href="css/main.css" />
      </head>
      <body>
@@ -14,10 +14,10 @@
         <main>
           <h2>Database Error</h2>
              
-          <p>There was an error connacting to the database.</p>
+          <p>There was an error connecting to the database.</p>
           <p>The database must be installed.</p>
           <p>MySQL must be running.</p>
-          <p>Error message: <?php echo $_SESSION["database_error"], ?></p>
+          <p>Error message: <?php echo htmlspecialchars($_SESSION["database_error"]); ?></p>
 
           <p><a href="index.php">View Book List</a></p>
         </main> 

@@ -19,7 +19,7 @@
 
             <p>You are logged in and may proceed to the book list by clicking below.</p>
             
-            <p><a href="index.php">book List</a></p>
+            <p><a href="index.php">Book List</a></p>
         </main>
 
         <?php include("footer.php"); ?>

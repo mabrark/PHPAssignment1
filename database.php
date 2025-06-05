@@ -11,7 +11,7 @@
     {
       $_SESSION["database_error"] = $e->getMessage();
       $url = "database_error.php";
-      header("location: " . $url);
+      header("Location: " . $url);
       exit();
     }
 ?>

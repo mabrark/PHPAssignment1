@@ -57,9 +57,9 @@
     }
  
     if ($book_name == null || $author_name == null ||
-        $publisher == null || $status == null $year == null $type == null)
+        $publisher == null || $status == null $year == null $type == null);
         {
-          $_SESSION["add_error"] = "invalid book data, check all fields and Try again.";
+          $_SESSION["add_error"] = "Invalid book data, check all fields and Try again.";
           header("Location:  . error.php");
           die();
         }
@@ -69,7 +69,7 @@
           $query = 'INSERT INTO books
           (bookName, authorName, publisher, status, year, imageName, typeID)
           VALUES
-          (:bookName, :authorName, :publisher, :status, :year, :imageName :typeID)';
+          (:bookName, :authorName, :publisher, :status, :year, :imageName, :typeID)';
  
        $statement = $db->prepare($query);
        $statement->bindValue(':bookName', $book_name);

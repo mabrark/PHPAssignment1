@@ -1,14 +1,14 @@
 <?php
-   seesion_start();
+   session_start();
 
    $book_id = filter_input(INPUT_POST, 'book_id', FILTER_VALIDATE_INT);
 
    $book_name = filter_input(INPUT_POST, 'book_name');
    $author_name = filter_input(INPUT_POST, 'author_name');
    $publisher = filter_input(INPUT_POST, 'publisher');
-   $staus = filter_input(INPUT_POST, 'status');
+   $status = filter_input(INPUT_POST, 'status');
    $year = filter_input(INPUT_POST, 'year');
-   $type_id = filter_input(INPUT_POST, 'type_id' FILTER_VALIDATE_INT);
+   $type_id = filter_input(INPUT_POST, 'type_id', FILTER_VALIDATE_INT);
    $image = $_FILES['image'];
 
     require_once('database.php');
@@ -40,7 +40,7 @@
         $query = 'SELECT imageName FROM books WHERE bookID = bookID';
         $statement = $db->prepare($query);
         $statement->bindValue(':bookID', $book_id);
-        $staement->execute();
+        $statement->execute();
         $current = $staement->fetch();
         $current_image_name = $current['imageName'];
         $staement->closeCursor();
@@ -94,8 +94,8 @@ $query = 'UPDATE books
     $statement->bindValue(':typeID', $type_id);
     $statement->bindValue(':imageName', $image_name);
     $statement->bindValue(':bookID', $book_id);  
-    $statement->executed();
-    $statement->loseCurser();
+    $statement->execute();
+    $statement->closeCurser();
 
       
    $_SESSION["fullName"] = $book_name . " " . $author_name;

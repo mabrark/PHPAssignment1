@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
      <head>
-       <title>Library Stock - confirmation</title>
+       <title>Library Stock - Confirmation</title>
        <link rel="stylesheet" type="text/css" href="css/main.css" />
      </head>
      <body>

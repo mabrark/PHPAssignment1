@@ -2,13 +2,13 @@
   require_once('database.php');
   $book_id = filter_input(INPUT_POST, 'book_id', FILTER_VALIDATE_INT);
 
-  $query = 'SELECT = FROM books WHERE bookID = :book_id';
+  $query = 'SELECT * FROM books WHERE bookID = :book_id';
 
       $statement = $db->prepare($query);
       $statement->bindValue(':book_id', $book_id);     
-      $statement->excecute();
+      $statement->execute();
       $book = $statement->fetch();
-      $statement->loseCurser();
+      $statement->closeCurser();
 
       $queryTypes = 'SELECT * FROM types';
       $statement2 = $db->prepare($queryTypes);
@@ -44,10 +44,10 @@
               <input type="text" name="publisher" value="<?php echo $book['publisher']; ?>"/><br />
 
               <label>Status:</label>
-              <input type="radio" name="status" value="memeber"
+              <input type="radio" name="status" value="member"
                      <?php echo if ($book['status'] == 'member') echo 'checked' : ''; ?> />Member
-              <input type="radio" name="status" value="nonmemeber" 
-                     <?php echo if ($book['status'] == 'nonmember') echo 'checked' : ''; ?> />Non-Member<br />
+              <input type="radio" name="status" value="nonmember" 
+                     <?php if ($book['status'] == 'nonmember') echo 'checked' : ''; ?> />Non-Member<br />
 
               <label>Year:</label>
               <input type="date" name="year" value="<?php echo $book['year']; ?>" /><br />
