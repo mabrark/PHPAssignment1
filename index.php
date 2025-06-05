@@ -1,7 +1,15 @@
 <?php
     session_start();
+
+    if (isset($_SESSION["isLoggedIn"])) {
+      header("Location: login_form.php");
+      dur();
+    }
+
     require("database.php");
-    $queryBooks = 'SELECT * FROM books';
+    $queryBooks = 'SELECT b.*, t.bookType 
+                   FROM books b 
+                   LEFT JOIN types t ON b.typeID = t.typeID';
     $statement1 = $db->prepare($queryBooks);
     $statement1->execute();
     $books = $statement1->fetchAll();
@@ -26,21 +34,26 @@
               <th>Book Name</th>
               <th>Author Name</th>
               <th> Publisher</th>
-              <th> status</th>
+              <th> Status</th>
               <th>Year</th>
+              <th>Book Type</th>
               <th>Photo</th>
-              <th>&nbsp;</th>
+              <th>&nbsp;</th> 
               <th>&nbsp;</th>
               </tr>
 
               <?php foreach ($books as $book): ?>
                 <tr>
-                  <td><?php echo $book['bookName']; ?></td>
-                  <td><?php echo $book['authorName']; ?></td>
-                  <td><?php echo $book['publisher']; ?></td>
-                  <td><?php echo $book['status']; ?></td>
-                  <td><?php echo $book['year']; ?></td>
-                  <td><img src="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" alt="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" style="width:auto; height: 100px;" /></td>
+                  <td><?php echo htmlspecialchars($book['bookName']); ?></td>
+                  <td><?php echo htmlspecialchars($book['authorName']); ?></td>
+                  <td><?php echo htmlspecialchars($book['publisher']); ?></td>
+                  <td><?php echo htmlspecialchars($book['status']); ?></td>
+                  <td><?php echo htmlspecialchars($book['year']); ?></td>
+                  <td><?php echo htmlspecialchars($book['bookType']); ?></td>
+                  <td>
+                    <img src="<?php echo htmlspecialchars('./images/' . $book['imageName']); ?>" 
+                         alt="<?php echo htmlspecialchars($book['bookName'] . '' . $book['authorName']); ?>" />
+                  </td>
                   <td>
                     <form action="update_book_form.php" method="post">
                       <input type="hidden"name="book_id"
@@ -48,7 +61,8 @@
                       <input type="submit" value="update" />    
                     </form>
                   </td>
-                  <form action="delete_book_form.php" method="post">
+                  <td>
+                  <form action="delete_book.php" method="post">
                       <input type="hidden"name="book_id"
                           value="<?php echo $book['bookID']; ?>" />
                       <input type="submit" value="update" />    
@@ -60,6 +74,7 @@
               <?php endforeach; ?>  
           </table>
           <p><a href="add_book_form.php">add Book</a></p>
+          <p><a href="logout.php">Logout</a></p>
         </main> 
 
         <?php include("footer.php"); ?>   
