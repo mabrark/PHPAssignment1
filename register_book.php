@@ -1,5 +1,6 @@
 <?php
     session_start();
+    require_once('message.php');
 
     $user_name = filter_input(INPUT_POST, 'user_name');    
     $password = filter_input(INPUT_POST, 'password');
@@ -53,8 +54,31 @@
 
     }
 
+
     $_SESSION["isLoggedIn"] = 1;
     $_SESSION["userName"] = $user_name;
+
+    $to_address = $email_address;
+    $to_name = $user_name;
+    $from_address = 'YOUR_USERNAME@gmail.com';
+    $from_name = 'Library';
+    $subject = 'Library - registration complete';
+    $body = '<p>Thanks for registering with our site<p>' . 
+            '<p>Sincerely,<p>' . 
+            '<p>Library<p>';
+    $is_body_html = true;
+    
+    try 
+    {
+        send_email($to_address, $to_name, $from_address, $from_name, $subect, $body, $is_body_html);
+    }
+
+    catch (Exception $ex)
+    {
+         $_SESSION["add_error"] = $ex->getMessage();
+         header("Location: error.php");
+         die(); 
+    }
 
     $url = "register_confirmation.php";
     header("Location: " . $url);
