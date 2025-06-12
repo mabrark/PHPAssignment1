@@ -5,7 +5,9 @@
     $user_name = filter_input(INPUT_POST, 'user_name');    
     $password = filter_input(INPUT_POST, 'password');
 
-    $hash = password_hash($password, PASSWORD_DEFAULT);  
+    $hash = password_hash($password, PASSWORD_DEFAULT); 
+    
+    $email_address = filter_input(INPUT_POST, 'email_address');
     
     require_once('database.php');
     $queryRegistrations = 'SELECT * FROM registrations';
@@ -27,7 +29,7 @@
         }
     }
 
-    if ($user_name === null || $password === null)
+    if ($user_name === null || $password === null || $email_address === null)
     {
         $_SESSION["add_error"] = "Invalid registration data, Check all fields and try again.";
 
@@ -41,13 +43,14 @@
         require_once('database.php');
 
         $query = 'INSERT INTO registrations
-            (userName, password)
+            (userName, password, emailAddress)
             VALUES
-            (:userName, :password)';
+            (:userName, :password :emailAddress)';
 
         $statement = $db->prepare($query);
         $statement->bindValue(':userName', $user_name);
         $statement->bindValue(':password', $hash);
+        $statement->bindValue(':emailAddress', $email_address);
 
         $statement->execute();
         $statement->closeCursor();
@@ -70,7 +73,7 @@
     
     try 
     {
-        send_email($to_address, $to_name, $from_address, $from_name, $subect, $body, $is_body_html);
+        send_email($to_address, $to_name, $from_address, $from_name, $subject, $body, $is_body_html);
     }
 
     catch (Exception $ex)

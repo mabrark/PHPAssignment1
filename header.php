@@ -1,3 +1,3 @@
 <header>
-  <h1>Library List</h1>
+  <h1>Library Stock System</h1>
 </header>

@@ -39,6 +39,7 @@
 
               <label>Year:</label>
               <input type="date" name="year" /><br />
+              
               <label>Book Type:</label>
               <select name="type_id">
                 <?php foreach ($types as $type): ?>

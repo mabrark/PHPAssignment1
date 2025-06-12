@@ -1,6 +1,9 @@
 <?php
    session_start();
 
+   require_once('database.php');
+   require_once('image_util.php');
+
    $book_id = filter_input(INPUT_POST, 'book_id', FILTER_VALIDATE_INT);
 
    $book_name = filter_input(INPUT_POST, 'book_name');
@@ -11,15 +14,14 @@
    $type_id = filter_input(INPUT_POST, 'type_id', FILTER_VALIDATE_INT);
    $image = $_FILES['image'];
 
-    require_once('database.php');
-    $queryBooks = 'SELECT * FROM books';
-    $statement1 = $db->prepare($queryBooks);
+    $queryBooks = 'SELECT * FROM books WHERE bookID = bookID';
+    $statement1 = $db->prepare($query);
+    $statement->bindValue(':bookID', $book_id);
     $statement1->execute();
     $books = $statement1->fetchAll();
-
     $statement1->closeCursor();
 
-    foreach ($books as $book)
+    foreach ($books as $b)
     { 
       if ($book == $book["bookName"] && $book_id != $book["bookID"])
       {
@@ -32,57 +34,47 @@
     if ($book_name == null || $author_name == null ||
         $publisher == null || $status == null || $year == null || $type_id == null)
         {
-          $_SESSION["add_error"] = "invalid data, duplicate book name. Try again.";
+          $_SESSION["add_error"] = "invalid book data, check all fields and Try again.";
           header("Location: error.php");
           die();
         }
-        require_once('image_util.php');
-        $query = 'SELECT imageName FROM books WHERE bookID = bookID';
-        $statement = $db->prepare($query);
-        $statement->bindValue(':bookID', $book_id);
-        $statement->execute();
-        $current = $staement->fetch();
-        $current_image_name = $current['imageName'];
-        $staement->closeCursor();
 
-          $image_name = $current_image_name;
+        if ($image && $image['error'] === UPLOAD_ERR_OK) {
+          $original_filename = basename($image['name']);
+          $upload_path = $base_dir . $original_filename;
 
-          if ($image && $image['error'] === UPLOAD_ERR_OK) {
-            $base_dir = 'images/';
-            if ($current_image_name) {
-                $dot = strrpos($current_image_name, '_100.');
-                if ($dot !== false) {
-                    $original_name = substr($current_image_name, 0, $dot) . substr($current_image_name, $dot + 4);
-                    $original = $base_dir . $original_name;
-                    $img_100 = $base_dir . $current_image_name;
-                    $img_400 = $base_dir . substr($current_image_name, 0, $dot) . '_400' . substr($current_image_name, $dot + 4);
-        
-                    if (file_exists($original)) unlink($original);
-                    if (file_exists($img_100)) unlink($img_100);
-                    if (file_exists($img_400)) unlink($img_400);
-                }
+          move_uploaded_file($image['tmp_name'], $upload_path);
+          process_image($base_dir . $original_filename);
+
+          $dot_pos = strrpos($original_filename, '.');
+          $new_image_name = substr($original_filename, 0, $dot_pos) . '_100' . substr($original_filename, $dot_pos);
+          $image_name = $new_image_name;
+
+          if ($old_image_name !== 'placeholder_100.jpg') {
+            $old_base = substr($old_image_name, 0, strrpos($old_image_name, '_100'));
+            $old_ext = substr($old_image_name strrpos($old_image_name, '.'));
+            $orginal = $old_base . $old_ext;
+            $img100 = $old_base . '_100' . $old_ext;
+            $img100 = $old_base . '_400' . $old_ext;
+
+            foreach ([$original, $img100, $img400] as $file) {
+              $path = $base_dir . $file;
+              if (file_exists($path)) {
+                unlink($path);
+              }
             }
-    $original_filename = basename($image['name']);
-    $upload_path = $base_dir . $original_filename;
-    move_uploaded_file($image['tmp_name'], $upload_path);
-    process_image($base_dir, $original_filename);
+          }
+        }
 
-    // Save new _100 filename for database
-    $dot_position = strrpos($original_filename, '.');
-    $name_without_ext = substr($original_filename, 0, $dot_position);
-    $extension = substr($original_filename, $dot_position);
-    $image_name = $name_without_ext . '_100' . $extension;
-}
-
-$query = 'UPDATE books
-    SET bookName = :bookName,
-        authorName = :authorName,
-        publisher = :publisher,
-        status = :status,
-        year = :year,
-        typeID = :typeID,
-        imageName = :imageName
-    WHERE bookID = :bookID';
+        $update_query = 'UPDATE books 
+        SET bookName = :bookName,
+            authorName = :authorName,
+            publisher = :publisher,
+            status = :status,
+            year = :year,
+            typeID = :typeID,
+            imageName = :imageName,
+            WHERE bookID = :bookID';
 
     $statement = $db->prepare($query);
     $statement->bindValue(':bookID', $book_id);

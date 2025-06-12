@@ -2,13 +2,12 @@
   require_once('database.php');
   $book_id = filter_input(INPUT_POST, 'book_id', FILTER_VALIDATE_INT);
 
-  $query = 'SELECT * FROM books WHERE bookID = :book_id';
-
+      $query = 'SELECT * FROM books WHERE bookID = :book_id';
       $statement = $db->prepare($query);
       $statement->bindValue(':book_id', $book_id);     
       $statement->execute();
       $book = $statement->fetch();
-      $statement->closeCurser();
+      $statement->closeCursor();
 
       $queryTypes = 'SELECT * FROM types';
       $statement2 = $db->prepare($queryTypes);
@@ -70,7 +69,7 @@
               <input type="file" name="image"><br />
              </div>
 
-             <div id="button">
+             <div id="buttons">
 
              <label>&nbsp;</label>
               <input type="submit" value="Update Book" /><br />

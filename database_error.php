@@ -17,7 +17,7 @@
           <p>There was an error connecting to the database.</p>
           <p>The database must be installed.</p>
           <p>MySQL must be running.</p>
-          <p>Error message: <?php echo htmlspecialchars($_SESSION["database_error"]); ?></p>
+          <p>Error message: <?php echo $_SESSION["database_error"]; ?></p>
 
           <p><a href="index.php">View Book List</a></p>
         </main> 

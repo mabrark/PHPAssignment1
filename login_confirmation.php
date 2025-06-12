@@ -13,7 +13,7 @@
         <main>
             <h2>Login Confirmation</h2>
             <p>
-                Thank you, <?php echo htmlspecialchars($_SESSION["userName"]); ?>, for
+                Thank you, <?php echo $_SESSION["userName"]; ?>, for
                 logging in. 
             </p>
 

@@ -15,7 +15,8 @@
 
     $statement1->bindValue(':userName', $user_name);
     $statement1->execute();
-    $row = $statement1->fetch();    
+    $row = $statement1->fetch();  
+      
     $statement1->closeCursor();
 
     $hash = $row['password'];

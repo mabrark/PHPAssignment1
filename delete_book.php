@@ -9,7 +9,7 @@
        $statement = $db->prepare($query);
        $statement->bindValue(':book_id', $book_id);
        
-       $statement->excecute();
+       $statement->execute();
        $statement->closeCurser();
    }
 

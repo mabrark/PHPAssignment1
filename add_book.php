@@ -10,12 +10,11 @@
    $type_id = filter_input(INPUT_POST, 'type_id', FILTER_VALIDATE_INT);
    $image = $_FILES['image'];
  
-   require_once('database.p[hp')
+   require_once('database.p[hp');
    require_once('image_util.php');
 
-   $base_dir = 'image/';
+   $base_dir = 'images/';
 
-   require_once('database.php');
     $queryBooks = 'SELECT * FROM books';
     $statement1 = $db->prepare($queryBooks);
     $statement1->execute();
@@ -41,15 +40,16 @@
         $image_name = '';
 
         if ($image && $image['error'] === UPLOAD_ERR_OK) {
-          $original_filrname = basename($image['name']);
-          $upload_path = $base_dir . $original_filrname;
+          $original_filename = basename($image['name']);
+          $upload_path = $base_dir . $original_filename;
           move_uploaded_file($image['tmp_name'], $upload_path);
-          process_image($base_dir, $original_filrname);
+          process_image($base_dir, $original_filename);
 
-          $dot_pos = strrpos($original_filrname, '.');
-          $name_100 = substr($original_filrname, 0, $dot_pos) . '_100' . substr($original_filrname, $dot_pos);
+          $dot_pos = strrpos($original_filename, '.');
+          $name_100 = substr($original_filename, 0, $dot_pos) . '_100' . substr($original_filename, $dot_pos);
           $image_name = $name_100;
         } else {
+          $placeholder = 'placeholder.jpg';
           $placeholder_100 = 'placeholder_100.jpg';
           $placeholder_400 = 'placeholder_400.jpg';
 
@@ -71,7 +71,7 @@
        $statement->bindValue(':status', $status);   
        $statement->bindValue(':year', $year);
        $statement->bindValue(':typeID' $type_id); 
-       $statement->bindValue(':imageName', $image_name_100);    
+       $statement->bindValue(':imageName', $image_name);    
        $statement->execute();
        $statement->closeCursor();
  
