@@ -32,11 +32,11 @@
     }
  
     if ($book_name == null || $author_name == null ||
-        $publisher == null || $status == null $year == null $type_id == null) {
+        $publisher == null || $status == null || $year == null || $type_id == null) {
           $_SESSION["add_error"] = "Invalid book data, check all fields and Try again.";
           header("Location:  . error.php");
           die();
-        }
+    }
         $image_name = '';
 
         if ($image && $image['error'] === UPLOAD_ERR_OK) {

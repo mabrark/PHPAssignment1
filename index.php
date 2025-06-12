@@ -7,9 +7,9 @@
     }
 
     require("database.php");
-    $queryBooks = 'SELECT c.*, t.bookType 
-                   FROM books c 
-                   LEFT JOIN types t ON c.typeID = t.typeID';
+    $queryBooks = 'SELECT b.*, t.bookType 
+                   FROM books b 
+                   LEFT JOIN types t ON b.typeID = t.typeID';
     $statement1 = $db->prepare($queryBooks);
     $statement1->execute();
     $books = $statement1->fetchAll();
