@@ -8,7 +8,7 @@
     exit;
    }
 
-   $query = 'SELECT c.*, t.bookType FROM books c LEFT JOIN types t ON c.typeID WHERE bookID = :book_id';
+   $query = 'SELECT b.*, t.bookType FROM books b LEFT JOIN types t ON b.typeID WHERE bookID = :book_id';
    $statement = $db->prepare($query);
    $statement->bindValue(':book_id', $book_id);
    $statement->execute();
@@ -47,7 +47,7 @@
         <img class="book-image" src="<?php echo htmlspecialchars('./images' . $imageName_400); ?>" 
              alt="<?php echo htmlspecialchars($book['bookName'] . '' . $book['authorName']); ?>" />
 
-        <div class"book-info">
+        <div class="book-info">
         <p><strong>Book Name:</strong> <?php echo htmlspecialchars($book['bookName']); ?></p>
             <p><strong>Author Name:</strong> <?php echo htmlspecialchars($book['authorName']); ?></p>
             <p><strong>Publisher:</strong> <?php echo htmlspecialchars($book['publisher']); ?></p>
