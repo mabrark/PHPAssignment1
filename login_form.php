@@ -19,9 +19,8 @@
                    unset($_SESSION['login_error']);
                    }
             ?>
-            
-            <form action="login.php" method="post" id="login_form"
-            enctype="multipart/form-data">
+
+            <form action="login.php" method="post" id="login_form" enctype="multipart/form-data">
 
                 <div id="data">
 
@@ -40,6 +39,10 @@
 
                 </div>
 
+            </form>
+            
+            <form action="guest_login.php" method="post" style="margin-top: 10px;">
+                <input type="submit" value="Login as Guest" />
             </form>
 
             <p><a href="register_book_form.php">Register</a></p>
